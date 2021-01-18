@@ -135,7 +135,7 @@ def test_nb_classifier(tokens):
 
 # Run the main function
 if __name__ == "__main__":
-    train_file = "training.txt" # specify training file name
+    train_file = "input_files/training.txt" # specify training file name
     train_colspecs = [(0,1), (2,None)] # specify column widths
     train_columns = ["sentiment", "text"] # specify column names
 
@@ -153,17 +153,18 @@ if __name__ == "__main__":
     classifier = train_nb_classifier(train_df)
 
     # Import test data, and test classifier against this data
-    test_file = "testdata.txt"
+    test_file = "input_files/testdata.txt"
     test_colspecs = [(0, None)] # specify column widths
     test_columns = ["text"] # specify column names
 
+    ## read_data() also creates "tokens" column
     test_df = read_data(test_file, test_colspecs, test_columns)
 
     test_df["sentiment"] = test_df["tokens"].apply(test_nb_classifier)
     print("Classified sentiment of test data.\n")
 
     # Create text file of test data with classified sentiments
-    test_file_classified = "testdata_classified.txt"
+    test_file_classified = "output_files/testdata_classified.txt"
     test_columns_classified = ["sentiment","text"]
 
     test_df.to_csv(test_file_classified,
@@ -171,5 +172,5 @@ if __name__ == "__main__":
                    columns=test_columns_classified,
                    header=False,
                    index=False)
-                   
+
     print("Created text file with test data and classified sentiment!")
