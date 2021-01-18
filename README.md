@@ -6,7 +6,7 @@ The main python script is `text_classify.py`.
 
 This script requires 2 input files:
 * `input_files/training.txt`
-* `input_files/testdata.txt`)
+* `input_files/testdata.txt`
 
 and produces 1 output file:
 * `output_files/testdata_classified.txt`
